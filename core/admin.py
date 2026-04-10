@@ -5,7 +5,6 @@ Django admin customization.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-
 from core import models
 
 
@@ -16,9 +15,9 @@ class UserAdmin(BaseUserAdmin):
     list_display = ['email', 'name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name',)}),
+        (('Personal Info'), {'fields': ('name',)}),
         (
-            _('Permissions'),
+            (_('Permissions')),
             {
                 'fields': (
                     'is_active',
@@ -27,8 +26,8 @@ class UserAdmin(BaseUserAdmin):
                 )
             },
         ),
-        (_('Important dates'), {'fields': ('last_login',)}),
-        (_('Groups'), {'fields': ('groups',)}),
+        (('Important dates'), {'fields': ('last_login',)}),
+        (('Groups'), {'fields': ('groups',)}),
         (_('User Permissions'), {'fields': ('user_permissions',)}),
     )
     readonly_fields = ['last_login']
@@ -52,3 +51,7 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Acessorio)
+admin.site.register(models.Cor)
+admin.site.register(models.Modelo)
+admin.site.register(models.Veiculo)
